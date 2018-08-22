@@ -7,7 +7,7 @@ state if the strain amplitude is below a critical value
 c, which is strongly dependent on concentration.
 Two considerably different types of absorbing states are observed at concentrations above and below the
 critical jamming volume fraction. At low concentrations, hydrodynamics dominates and the equations
-of motion are time-reversible, offering a clear route to reversibility. At high concentrations, contact forces
+ of motion are time-reversible, offering a clear route to reversibility. At high concentrations, contact forces
 dominate and the equations of motion are irreversible. However, at low strain amplitudes, the particles are
 able to self-organise towards an absorbing state. Microscopic and macroscopic reversibility are considered
 in an attempt to characterise the transition, and a phase diagram indicating regions in which both types
@@ -15,4 +15,4 @@ of reversibility are satisfied is constructed. A critical volume fraction at whi
 formed, even for infinitesimally small strain amplitudes, is identified as the jamming point and estimated to
 be \phi_c = 0.650 +/- 0.004. Good agreement is found between microscopic and macroscopic reversibility criteria
 for suspensions at concentrations below the jamming point, but inconsistency at concentrations above the
-jamming point prevents unication of both types of absorbing-state transitions.
+jamming point prevents unification of both types of absorbing-state transitions.
