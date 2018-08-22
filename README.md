@@ -13,6 +13,6 @@ able to self-organise towards an absorbing state. Microscopic and macroscopic re
 in an attempt to characterise the transition, and a phase diagram indicating regions in which both types
 of reversibility are satisfied is constructed. A critical volume fraction at which absorbing states cannot be
 formed, even for infinitesimally small strain amplitudes, is identified as the jamming point and estimated to
-be \phi_c = 0.650 \pm 0.004. Good agreement is found between microscopic and macroscopic reversibility criteria
+be \phi_c = 0.650 +/- 0.004. Good agreement is found between microscopic and macroscopic reversibility criteria
 for suspensions at concentrations below the jamming point, but inconsistency at concentrations above the
 jamming point prevents unication of both types of absorbing-state transitions.
