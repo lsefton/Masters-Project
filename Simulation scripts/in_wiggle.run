@@ -1,0 +1,28 @@
+read_restart input_files/in${vol_frac}.restart
+newton off
+comm_modify mode single vel yes
+neighbor 0.2 bin
+neigh_modify check yes every 1 delay 0
+pair_style hybrid/overlayStressContributions gran/hooke/history 10000 NULL 0 NULL 1 1 lubricate/bmpoly 0.1 1 1 0.001 0.05 1 0
+pair_coeff	* * gran/hooke/history
+pair_coeff * * lubricate/bmpoly
+timestep	${timestep}
+fix		1 all nve/sphere
+
+dump   1   all   custom   ${dump_nt}  data/volume_fraction_${vol_frac}/vol_${vol_frac}_amp_${true_amp}.dump  id  x y z  ix iy iz radius
+dump_modify   1   format line "%d %.12f %.12f %.12f %d %d %d %.2f"
+
+compute		4_0 all pressure NULL pair
+compute		Temp all temp/profile 1 1 1 y 10
+compute		SC all pressureStressContributionsArray Temp nStyles 2
+compute cont all contact/atom
+compute cons all reduce ave c_cont
+thermo_style	custom time c_SC[1][5] c_SC[2][5] c_SC[1][6] c_SC[2][6] c_cons xy xz yz ly
+thermo_modify	lost ignore norm no
+compute_modify	thermo_temp dynamic yes
+fix 2 all deform 1 xz wiggle ${amplitude} ${period} remap v
+thermo ${thermo_nt}
+log data/volume_fraction_${vol_frac}/vol_${vol_frac}_amp_${true_amp}.log
+reset_timestep 0
+run ${timesteps}
+write_restart data/volume_fraction_${vol_frac}/vol_${vol_frac}_amp_${true_amp}.restart

@@ -1,0 +1,38 @@
+atom_style	sphere
+boundary	p p p
+newton		off
+comm_modify	mode single vel yes
+region		reg prism 0 ${box_dim} 0 ${box_dim} 0 ${box_dim} 0 0 0 units box
+create_box	2 reg
+lattice 	sc 1
+create_atoms 1 random ${half_n_particles} 400000 NULL
+create_atoms 2 random ${half_n_particles} 400001 NULL
+set type 1 diameter 1.4
+set type 2 diameter 1
+neighbor	0.2 bin
+neigh_modify	delay 0
+
+timestep	${timestep}
+
+fix		1 all nve/sphere
+
+
+
+compute     5 all contact/atom
+compute     6 all reduce ave c_5
+variable    phi equal 2*${half_n_particles}*(4/3)*PI*0.5*0.5*0.5/vol+2*${half_n_particles}*(4/3)*PI*0.7*0.7*0.7/vol
+
+thermo_style	custom step c_6 v_phi ke press
+thermo		10000
+thermo_modify	lost ignore norm no
+compute_modify	thermo_temp dynamic yes
+
+
+pair_style      gran/hooke/history 10000 NULL 10 NULL 0.001 0
+pair_coeff	* *
+
+
+run ${timesteps}
+
+
+write_restart input_files/in${vol_frac}.restart
